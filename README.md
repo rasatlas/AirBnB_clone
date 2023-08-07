@@ -1,1 +1,2 @@
-# 0x00. AirBnB clone - The console <br > `Group project` `Python` `OOP`
+# 0x00. AirBnB clone - The console
+![#f03c15](Group project) `#f03c15``Group project` `Python` `OOP`
