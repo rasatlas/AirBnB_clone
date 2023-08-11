@@ -22,6 +22,8 @@ class BaseModel:
         time_format = "%Y-%m-%dT%H:%M:%S.%f"
 
         if kwargs:
+            # Creates BaseModel from dictionary.
+            # Converts datetime string values into datetime object values.
             del kwargs["__class__"]
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
