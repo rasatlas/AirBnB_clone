@@ -126,9 +126,6 @@ class HBNBCommand(cmd.Cmd):
         """
         return True
 
-    def help_quit(self):
-        print("Quit command to exit the program.")
-
     def do_EOF(self, line):
         """
         Exits the command interpreter when ctrl+d is typed.
