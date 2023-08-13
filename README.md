@@ -16,22 +16,75 @@ The console is a command interpreter to manage objects abstraction between objec
 
 The console willl perform the following tasks:
 
-	- Create a new object
-	- Retrive an object from a file
-	- Do operations on objects
-	- Destroy an object
+	- **Create a new object**
+	- **Retrive an object from a file**
+	- **Do operations on objects**
+	- **Destroy an object**
 
 ### Storage
 
-All the classes are handled by the Storage engine in the FileStorage Class.
+All file writing and reading is handled by the `FileStorage` Class.
 
 ## Environment
 
 - Style guidelines:
+	
 	- [pycodestyle (version 2.8.0)](https://pypi.org/project/pycodestyle/)
 
-- All the development and testing was done over an operating system running Ubuntu 20.04 LTS using Python 3.8.5.
+- All the development and testing was done over a system running Ubuntu 20.04 LTS using Python 3.8.5.
 
-- The editor used is VIM 8.1 and Version Control using Git 2.25.1.
+- The editor used was VIM 8.1 and Version Control was done using Git 2.25.1.
 
 ## Installation
+```git
+git clone https://github.com/rasatlas/AirBnB_clone.git
+```
+
+Move to the AirBnB_clone directory and run the command:
+```bash
+./console.py
+```
+
+### Execution
+
+In interactive mode
+
+```bash
+$ ./console.py
+(hbnb) help
+
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+
+(hbnb) 
+(hbnb) 
+(hbnb) quit
+$
+```
+
+In Non-interactive mode
+
+```bash
+$ echo "help" | ./console.py
+(hbnb)
+
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+(hbnb) 
+$
+$ cat test_help
+help
+$
+$ cat test_help | ./console.py
+(hbnb)
+
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+(hbnb) 
+$
+```
+
+
