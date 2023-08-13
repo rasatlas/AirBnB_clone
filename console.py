@@ -184,10 +184,6 @@ class HBNBCommand(cmd.Cmd):
         """
         return True
 
-def parse(line: str):
-    """splits a line by spaces"""
-    args = shlex.split(line)
-    return args, len(args)
 
 
 if __name__ == "__main__":
