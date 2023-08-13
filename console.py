@@ -162,10 +162,6 @@ class HBNBCommand(cmd.Cmd):
             return self.handle_class_methods(arg)
         return Cmd.default(self, arg)
 
-<<<<<<< HEAD
-
-=======
->>>>>>> fefe5c23041ce50285f4d612e2f211c61851c228
     def emptyline(self):
         """
         Empty line handler - prohibits empty line + ENTER from execution.
