@@ -4,30 +4,48 @@ Entry point to the command interpreter.
 """
 import cmd
 from models.base_model import BaseModel
-
+from models.user import User
+from models.state import State
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
 
 class HBNBCommand(cmd.Cmd):
     """
     Command interpreter implementation for Airbnb clone.
     """
     prompt = "(hbnb) "
+    __classes = {
+        "BaseModel",
+        "User",
+        "State",
+        "City",
+        "Place",
+        "Amenity",
+        "Review"
+    }
 
-    def do_create(self):
-        """Usage: create <class>
-        Create a new class instance and print its id.
-        """
-        argl = parse(arg)
+    def do_create(self, args):
+        """Create an instance of Model given its name eg.
+        $ create ModelName
+        Throws an Error if ModelName is missing or doesn't exist"""
+        args, n = parse(args)
 
-
-        if len(argl) == 0:
+        if not n:
             print("** class name missing **")
-        elif argl[0] not in HBNBCommand.__classes:
+        elif args[0] not in classes:
             print("** class doesn't exist **")
+        elif n == 1:
+            # temp = classes[args[0]]()
+            temp = eval(args[0])()
+            print(temp.id)
+            temp.save()
         else:
-            print(eval(argl[0])().id)
-            storage.save()
+            print("** Too many argument for create **")
+            pass
 
-    def do_show(self):
+    def do_show(self, arg):
         """Show an Instance of Model base on its ModelName and id eg.
         $ show MyModel instance_id
         Print error message if either MyModel or instance_id is missing
@@ -50,12 +68,12 @@ class HBNBCommand(cmd.Cmd):
             print("** Too many argument for show **")
             pass
 
-    def do_destroy(self):
+    def do_destroy(self, arg):
         """Deletes an Instance of Model base on its ModelName and id eg.
         $ destroy MyModel instance_id
         Print error message if either MyModel or instance_id is missing
         Print an Error message for wrong MyModel or instance_id"""
-        args, n = parse(args)
+        args, n = parse(arg)
 
         if not n:
             print("** class name missing **")
@@ -72,7 +90,7 @@ class HBNBCommand(cmd.Cmd):
             print("** Too many argument for destroy **")
             pass
 
-    def do_all(self):
+    def do_all(self, args):
         """Retrieve all instances: eg.
         $ all
         $ all MyModel
@@ -88,12 +106,11 @@ class HBNBCommand(cmd.Cmd):
             print("** Too many argument for all **")
             pass
 
-    def do_update(self):
+    def do_update(self, arg):
         """Updates an instance base on its id eg
         $ update Model id field value
         Throws errors for missing arguments"""
         args, n = parse(arg)
-        
         if not n:
             print("** class name missing **")
         elif n == 1:
@@ -109,6 +126,43 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
             except InstanceNotFoundError:
                 print("** no instance found **")
+
+    def do_models(self, arg):
+        """Print all registered Models"""
+        print(*classes)
+
+    def handle_class_methods(self, arg):
+        """Handle Class Methods
+        <cls>.all(), <cls>.show() etc
+        """
+
+        printable = ("all(", "show(", "count(", "create(")
+        try:
+            val = eval(arg)
+            for x in printable:
+                if x in arg:
+                    print(val)
+                    break
+            return
+        except AttributeError:
+            print("** invalid method **")
+        except InstanceNotFoundError:
+            print("** no instance found **")
+        except TypeError as te:
+            field = te.args[0].split()[-1].replace("_", " ")
+            field = field.strip("'")
+            print(f"** {field} missing **")
+        except Exception as e:
+            print("** invalid syntax **")
+            pass
+
+    def default(self, arg):
+        """Override default method to handle class methods"""
+        if '.' in arg and arg.split('.')[0] in classes and arg[-1] == ')':
+            return self.handle_class_methods(arg)
+        return Cmd.default(self, arg)
+
+
 
     def emptyline(self):
         """
