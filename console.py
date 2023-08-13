@@ -32,7 +32,6 @@ class HBNBCommand(cmd.Cmd):
         $ show MyModel instance_id
         Print error message if either MyModel or instance_id is missing
         Print an Error message for wrong MyModel or instance_id"""
-        
         args, n = parse(arg)
 
         if not n:
@@ -56,7 +55,6 @@ class HBNBCommand(cmd.Cmd):
         $ destroy MyModel instance_id
         Print error message if either MyModel or instance_id is missing
         Print an Error message for wrong MyModel or instance_id"""
-        
         args, n = parse(args)
 
         if not n:
@@ -79,7 +77,6 @@ class HBNBCommand(cmd.Cmd):
         $ all
         $ all MyModel
         if MyModel is passed returns only instances of MyModel"""
-        
         args, n = parse(args)
 
         if n < 2:
@@ -95,7 +92,6 @@ class HBNBCommand(cmd.Cmd):
         """Updates an instance base on its id eg
         $ update Model id field value
         Throws errors for missing arguments"""
-        
         args, n = parse(arg)
         
         if not n:
