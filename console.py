@@ -11,6 +11,7 @@ from models.place import Place
 from models.amenity import Amenity
 from models.review import Review
 
+
 class HBNBCommand(cmd.Cmd):
     """
     Command interpreter implementation for Airbnb clone.
@@ -161,8 +162,6 @@ class HBNBCommand(cmd.Cmd):
         if '.' in arg and arg.split('.')[0] in classes and arg[-1] == ')':
             return self.handle_class_methods(arg)
         return Cmd.default(self, arg)
-
-
 
     def emptyline(self):
         """
