@@ -16,10 +16,10 @@ The console is a command interpreter to manage objects abstraction between objec
 
 The console willl perform the following tasks:
 
-	- **Create a new object**
-	- **Retrive an object from a file**
-	- **Do operations on objects**
-	- **Destroy an object**
+	- **Create a new object
+	- Retrive an object from a file
+	- Do operations on objects
+	- Destroy an object**
 
 ### Storage
 
