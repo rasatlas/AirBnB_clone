@@ -25,7 +25,6 @@ class HBNBCommand(cmd.Cmd):
         "Amenity",
         "Review"
     }
-
     def do_create(self, args):
         """Create an instance of Model given its name eg.
         $ create ModelName
@@ -163,7 +162,6 @@ class HBNBCommand(cmd.Cmd):
         return Cmd.default(self, arg)
 
 
-
     def emptyline(self):
         """
         Empty line handler - prohibits empty line + ENTER from execution.
@@ -181,6 +179,11 @@ class HBNBCommand(cmd.Cmd):
         Exits the command interpreter when ctrl+d is typed.
         """
         return True
+
+def parse(line: str):
+    """splits a line by spaces"""
+    args = shlex.split(line)
+    return args, len(args)
 
 
 if __name__ == "__main__":
