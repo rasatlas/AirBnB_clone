@@ -3,7 +3,7 @@
 Entry point to the command interpreter.
 """
 import cmd
-from modules.base_model import BaseModel
+from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
@@ -38,9 +38,6 @@ class HBNBCommand(cmd.Cmd):
         Quit command to exit the program.
         """
         return True
-
-    def help_quit(self):
-        print("Quit command to exit the program.")
 
     def do_EOF(self, line):
         """
