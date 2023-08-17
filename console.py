@@ -13,7 +13,6 @@ import re
 from models.review import Review
 from models.user import User
 from models.state import State
-import string
 
 
 def parse(arg):
