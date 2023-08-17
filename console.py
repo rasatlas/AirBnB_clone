@@ -3,6 +3,7 @@
 Defines the hbnb console.
 Entry point to the command interpreter.
 """
+import models
 from models.amenity import Amenity
 from models.base_model import BaseModel
 from models.city import City
@@ -12,6 +13,7 @@ import re
 from models.review import Review
 from models.user import User
 from models.state import State
+import string
 
 
 def parse(arg):
@@ -19,7 +21,7 @@ def parse(arg):
     brackets = re.search(r"\[(.*?)\]", arg)
     if curly_braces is None:
         if brackets is None:
-            return [i.strip(",") for i in split(arg)]
+            return [i.strip(",") for i in arg.split()]
         else:
             lexer = split(arg[:brackets.span()[0]])
             retl = [i.strip(",") for i in lexer]
@@ -55,14 +57,14 @@ class HBNBCommand(cmd.Cmd):
         Usage: create <class>
         Create a new class instance and print its id.
         """
-        argl = parse(arg)
+        argl = parse(args)
         if len(argl) == 0:
             print("** class name missing **")
         elif argl[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
         else:
             print(eval(argl[0])().id)
-            storage.save()
+            models.storage.save()
 
     def do_show(self, arg):
         """
@@ -70,7 +72,7 @@ class HBNBCommand(cmd.Cmd):
         Display the string representation of a class instance of a given id.
         """
         argl = parse(arg)
-        objdict = storage.all()
+        objdict = models.storage.all()
         if len(argl) == 0:
             print("** class name missing **")
         elif argl[0] not in HBNBCommand.__classes:
@@ -88,7 +90,7 @@ class HBNBCommand(cmd.Cmd):
         Delete a class instance of a given id.
         """
         argl = parse(arg)
-        objdict = storage.all()
+        objdict = models.storage.all()
         if len(argl) == 0:
             print("** class name missing **")
         elif argl[0] not in HBNBCommand.__classes:
@@ -101,7 +103,7 @@ class HBNBCommand(cmd.Cmd):
             del objdict["{}.{}".format(argl[0], argl[1])]
             storage.save()
 
-    def do_all(self, args):
+    def do_all(self, arg):
         """
         Usage: all or all <class> or <class>.all()
         Display string representations of all instances of a given class.
@@ -112,7 +114,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             objl = []
-            for obj in storage.all().values():
+            for obj in models.storage.all().values():
                 if len(argl) > 0 and argl[0] == obj.__class__.__name__:
                     objl.append(obj.__str__())
                 elif len(argl) == 0:
@@ -128,7 +130,7 @@ class HBNBCommand(cmd.Cmd):
         a given attribute key/value pair or dictionary.
         """
         argl = parse(arg)
-        objdict = storage.all()
+        objdict = models.storage.all()
 
         if len(argl) == 0:
             print("** class name missing **")
