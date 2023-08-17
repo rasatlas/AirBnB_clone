@@ -26,6 +26,7 @@ class HBNBCommand(cmd.Cmd):
         "Amenity",
         "Review"
     }
+
     def do_create(self, args):
         """Create an instance of Model given its name eg.
         $ create ModelName
@@ -179,7 +180,6 @@ class HBNBCommand(cmd.Cmd):
         Exits the command interpreter when ctrl+d is typed.
         """
         return True
-
 
 
 if __name__ == "__main__":
