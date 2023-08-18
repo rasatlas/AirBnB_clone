@@ -15,22 +15,49 @@ from models.user import User
 from models.state import State
 
 
-def parse(arg):
-    curly_braces = re.search(r"\{(.*?)\}", arg)
-    brackets = re.search(r"\[(.*?)\]", arg)
-    if curly_braces is None:
-        if brackets is None:
-            return [i.strip(",") for i in arg.split()]
-        else:
-            lexer = split(arg[:brackets.span()[0]])
-            retl = [i.strip(",") for i in lexer]
-            retl.append(brackets.group())
-            return retl
+#def parser(args):
+#    curly_braces = re.search(r"\{(.*?)\}", args)
+#    brackets = re.search(r"\[(.*?)\]", args)
+#    if curly_braces is None:
+#        if brackets is None:
+#            return [words.strip(",") for words in args.split()]
+#        else:
+#            lexer = split(args[:brackets.span()[0]])
+#            retl = [words.strip(",") for words in lexer]
+#            retl.append(brackets.group())
+#            return retl
+#    else:
+#        lexer = re.split(args[:curly_braces.span()[0]])
+#        retl = [words.strip(",") for words in lexer]
+#        retl.append(curly_braces.group())
+#        return retl
+
+def extract_braces_contents(args):
+    braces_pattern = r"\{(.*?)\}"
+    braces_match = re.search(braces_pattern, args)
+    if braces_match:
+        return braces_match.group(1)
     else:
-        lexer = split(arg[:curly_braces.span()[0]])
-        retl = [i.strip(",") for i in lexer]
-        retl.append(curly_braces.group())
-        return retl
+        return None
+
+def extract_brackets_contents(args):
+    brackets_pattern = r"\[(.*?)\]"
+    brackets_match = re.search(brackets_pattern, args)
+    if brackets_match:
+        return brackets_match.group(1)
+    else:
+        return None
+
+def parser(args):
+    args_list = []
+    braces_contents = extract_braces_contents(args)
+    if braces_contents:
+        args_list.append(braces_contents)
+    args_list.extend(args.split(","))
+    brackets_contents = extract_brackets_contents(args)
+    if brackets_contents:
+        args_list.append(brackets_contents)
+    return args_list
 
 
 class HBNBCommand(cmd.Cmd):
@@ -57,7 +84,7 @@ class HBNBCommand(cmd.Cmd):
         Creates a new instance of BaseModel, saves it to the JSON file
         and prints the id.
         """
-        arg_list = parse(args)
+        arg_list = parser(args)
         if len(arg_list) == 0:
             print("** class name missing **")
         elif arg_list[0] not in HBNBCommand.__classes:
@@ -72,7 +99,7 @@ class HBNBCommand(cmd.Cmd):
         Prints the string representation of an instance based on the class
         name and id.
         """
-        arg_list = parse(args)
+        arg_list = parser(args)
         obj_dict = models.storage.all()
         if len(arg_list) == 0:
             print("** class name missing **")
@@ -91,7 +118,7 @@ class HBNBCommand(cmd.Cmd):
         Deletes an instance based on the class name & id
         and saves the change into the JSON file.
         """
-        arg_list = parse(args)
+        arg_list = parser(args)
         obj_dict = models.storage.all()
         if len(arg_list) == 0:
             print("** class name missing **")
@@ -112,7 +139,7 @@ class HBNBCommand(cmd.Cmd):
         the class name.
         If no class is specified, displays all instantiated objects.
         """
-        arg_list = parse(args)
+        arg_list = parser(args)
         if len(arg_list) > 0 and arg_list[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
         else:
@@ -133,7 +160,7 @@ class HBNBCommand(cmd.Cmd):
         Updates an instance based on the class name and id by adding or
         updating attribute and saves the changes into the JSON file.
         """
-        arg_list = parse(args)
+        arg_list = parser(args)
         obj_dict = models.storage.all()
 
         if len(arg_list) == 0:
@@ -181,7 +208,7 @@ class HBNBCommand(cmd.Cmd):
         Usage: count <class> or <class>.count()
         Retrieves the number of instances of a given class.
         """
-        arg_list = parse(args)
+        arg_list = parser(args)
         count = 0
         for obj in models.storage.all().values():
             if arg_list[0] == obj.__class__.__name__:
