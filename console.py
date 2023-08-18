@@ -15,49 +15,22 @@ from models.user import User
 from models.state import State
 
 
-#def parser(args):
-#    curly_braces = re.search(r"\{(.*?)\}", args)
-#    brackets = re.search(r"\[(.*?)\]", args)
-#    if curly_braces is None:
-#        if brackets is None:
-#            return [words.strip(",") for words in args.split()]
-#        else:
-#            lexer = split(args[:brackets.span()[0]])
-#            retl = [words.strip(",") for words in lexer]
-#            retl.append(brackets.group())
-#            return retl
-#    else:
-#        lexer = re.split(args[:curly_braces.span()[0]])
-#        retl = [words.strip(",") for words in lexer]
-#        retl.append(curly_braces.group())
-#        return retl
-
-def extract_braces_contents(args):
-    braces_pattern = r"\{(.*?)\}"
-    braces_match = re.search(braces_pattern, args)
-    if braces_match:
-        return braces_match.group(1)
-    else:
-        return None
-
-def extract_brackets_contents(args):
-    brackets_pattern = r"\[(.*?)\]"
-    brackets_match = re.search(brackets_pattern, args)
-    if brackets_match:
-        return brackets_match.group(1)
-    else:
-        return None
-
 def parser(args):
-    args_list = []
-    braces_contents = extract_braces_contents(args)
-    if braces_contents:
-        args_list.append(braces_contents)
-    args_list.extend(args.split(","))
-    brackets_contents = extract_brackets_contents(args)
-    if brackets_contents:
-        args_list.append(brackets_contents)
-    return args_list
+    curly_braces = re.search(r"\{(.*?)\}", args)
+    brackets = re.search(r"\[(.*?)\]", args)
+    if curly_braces is None:
+        if brackets is None:
+            return [words.strip(",") for words in args.split()]
+        else:
+            lexer = split(args[:brackets.span()[0]])
+            retl = [words.strip(",") for words in lexer]
+            retl.append(brackets.group())
+            return retl
+    else:
+        lexer = re.split(args[:curly_braces.span()[0]])
+        retl = [words.strip(",") for words in lexer]
+        retl.append(curly_braces.group())
+        return retl
 
 
 class HBNBCommand(cmd.Cmd):
