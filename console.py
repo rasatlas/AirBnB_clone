@@ -13,6 +13,7 @@ import re
 from models.review import Review
 from models.user import User
 from models.state import State
+from shlex import split
 
 
 def parser(args):
