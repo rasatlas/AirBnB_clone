@@ -16,8 +16,8 @@ from models.state import State
 
 
 def parser(args):
-    curly_braces = re.search(r"\{(.*?)\}", args)
-    brackets = re.search(r"\[(.*?)\]", args)
+    curly_braces = re.search(r"^{(.*?)$}", args)
+    brackets = re.search(r"^[(.*?)$]", args)
     if curly_braces is None:
         if brackets is None:
             return [words.strip(",") for words in args.split()]
