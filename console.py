@@ -17,19 +17,19 @@ from shlex import split
 
 
 def parser(args):
-    curly_braces = re.search(r'\{(.*?)\}', args)
-    brackets = re.search(r'\[(.*?)\]', args)
+    curly_braces = re.search(r"\{(.*?)\}", args)
+    brackets = re.search(r"\[(.*?)\]", args)
     if curly_braces is None:
         if brackets is None:
-            return [words.strip(',') for words in split(args)]
+            return [words.strip(",") for words in split(args)]
         else:
-            lexer = split(args[:brackets.span()[0]])
-            retl = [words.strip(',') for words in lexer]
+            lexer = split(args[: brackets.span()[0]])
+            retl = [words.strip(",") for words in lexer]
             retl.append(brackets.group())
             return retl
     else:
-        lexer = re.split(args[:curly_braces.span()[0]])
-        retl = [words.strip(',') for words in lexer]
+        lexer = split(args[: curly_braces.span()[0]])
+        retl = [words.strip(",") for words in lexer]
         retl.append(curly_braces.group())
         return retl
 
