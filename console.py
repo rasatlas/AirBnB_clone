@@ -188,27 +188,27 @@ class HBNBCommand(cmd.Cmd):
                 count += 1
         print(count)
 
-    def default(self, arg):
+    def default(self, args):
         """
-        Default behavior for cmd module when input is invalid
+        Default behavior for cmd module when input is invalid.
         """
-        argdict = {
+        arg_dict = {
             "all": self.do_all,
             "show": self.do_show,
             "destroy": self.do_destroy,
             "count": self.do_count,
             "update": self.do_update
         }
-        match = re.search(r"\.", arg)
+        match = re.search(r"\.", args)
         if match is not None:
-            argl = [arg[:match.span()[0]], arg[match.span()[1]:]]
-            match = re.search(r"\((.*?)\)", argl[1])
+            arg_list = [args[:match.span()[0]], args[match.span()[1]:]]
+            match = re.search(r"\((.*?)\)", arg_list[1])
             if match is not None:
-                command = [argl[1][:match.span()[0]], match.group()[1:-1]]
-                if command[0] in argdict.keys():
-                    call = "{} {}".format(argl[0], command[1])
-                    return argdict[command[0]](call)
-        print("*** Unknown syntax: {}".format(arg))
+                command = [arg_list[1][:match.span()[0]], match.group()[1:-1]]
+                if command[0] in arg_dict.keys():
+                    call = "{} {}".format(arg_list[0], command[1])
+                    return arg_dict[command[0]](call)
+        print("*** Unknown syntax: {}".format(args))
         return False
 
     def emptyline(self):
