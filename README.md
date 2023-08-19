@@ -170,22 +170,22 @@ $
 
 ### Commands:
 
-+ Create :
++ **create** :
     - Usage: create &lt;class&gt;
     - Creates a new instance of BaseModel, saves it to the JSON file and prints the id.
-+ Show : 
++ **show** : 
     - Usage: show &lt;class&gt; &lt;id&gt; or &lt;class&gt;.show(&lt;id&gt;)
     - Prints the string representation of an instance based on the class name and id.
-+ Destroy :
++ **destroy** :
     - Usage: destroy &lt;class&gt; &lt;id&gt; or &lt;class&gt;.destroy(&lt;id&gt;)
     - Deletes an instance based on the class name & id and saves the change into the JSON file.
-+ all :
++ **all** :
     - Usage: all or all &lt;class&gt; or &lt;class&gt;.all()
     - Prints all string representation of all instances based or not on the class name.
     - If no class is specified, displays all instantiated objects.
-+ count :
++ **count** :
     - Usage: count &lt;class&gt; or &lt;class&gt;.count()
     - Retrieves the number of instances of a given class.
-+ update :
++ **update** :
     - Usage: update &lt;class&gt; &lt;id&gt; &lt;attribute_name&gt; &lt;attribute_value&gt; or<br>&lt;class&gt;.update(&lt;id&gt;, &lt;attribute_name&gt;, &lt;attribute_value&gt;) or<br>&lt;class&gt;.update(&lt;id&gt;, &lt;dictionary&gt;)
     - Updates an instance based on the class name and id by adding or updating attribute and saves the changes into the JSON file.
