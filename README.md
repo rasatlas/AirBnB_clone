@@ -187,7 +187,5 @@ $
     - Usage: count &lt;class&gt; or &lt;class&gt;.count()
     - Retrieves the number of instances of a given class.
 + update :
-    - Usage: update &lt;class&gt; &lt;id&gt; &lt;attribute_name&gt; &lt;attribute_value&gt; or
-&lt;class&gt;.update(&lt;id&gt;, &lt;attribute_name&gt;, &lt;attribute_value&gt;) or
- &lt;class&gt;.update(&lt;id&gt;, &lt;dictionary&gt;)
+    - Usage: update &lt;class&gt; &lt;id&gt; &lt;attribute_name&gt; &lt;attribute_value&gt; or<br>&lt;class&gt;.update(&lt;id&gt;, &lt;attribute_name&gt;, &lt;attribute_value&gt;) or<br>&lt;class&gt;.update(&lt;id&gt;, &lt;dictionary&gt;)
     - Updates an instance based on the class name and id by adding or updating attribute and saves the changes into the JSON file.
