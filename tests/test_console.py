@@ -43,59 +43,59 @@ class TestHBNBCommand_help(unittest.TestCase):
             self.assertEqual(h, output.getvalue().strip())
 
     def test_help_create(self):
-        h = (" Usage: create <class>
+        h = ('''Usage: create <class>
         Creates a new instance of BaseModel, saves it to the JSON file
-        and prints the id.")
+        and prints the id.''')
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help create"))
             self.assertEqual(h, output.getvalue().strip())
 
     def test_help_EOF(self):
-        h = " Exits the command interpreter when ctrl+d is typed.
-        EOF signal to exit the program."
+        h = '''Exits the command interpreter when ctrl+d is typed.
+        EOF signal to exit the program.'''
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help EOF"))
             self.assertEqual(h, output.getvalue().strip())
 
     def test_help_show(self):
-        h = (" Usage: show <class> <id> or <class>.show(<id>)
+        h = ('''Usage: show <class> <id> or <class>.show(<id>)
         Prints the string representation of an instance based on the class
-        name and id.")
+        name and id.''')
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help show"))
             self.assertEqual(h, output.getvalue().strip())
 
     def test_help_destroy(self):
-        h = ("Usage: destroy <class> <id> or <class>.destroy(<id>)
+        h = ('''Usage: destroy <class> <id> or <class>.destroy(<id>)
         Deletes an instance based on the class name & id
-        and saves the change into the JSON file.")
+        and saves the change into the JSON file.''')
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help destroy"))
             self.assertEqual(h, output.getvalue().strip())
 
     def test_help_all(self):
-        h = ("Usage: all or all <class> or <class>.all()
+        h = ('''Usage: all or all <class> or <class>.all()
         Prints all string representation of all instances based or not on
         the class name.
-        If no class is specified, displays all instantiated objects.")
+        If no class is specified, displays all instantiated objects.''')
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help all"))
             self.assertEqual(h, output.getvalue().strip())
 
     def test_help_count(self):
-        h = ("Usage: count <class> or <class>.count()
-        Retrieves the number of instances of a given class.")
+        h = ('''Usage: count <class> or <class>.count()
+        Retrieves the number of instances of a given class.''')
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help count"))
             self.assertEqual(h, output.getvalue().strip())
 
     def test_help_update(self):
-        h = (" Usage:
+        h = ('''Usage:
         update <class> <id> <attribute_name> <attribute_value> or
         <class>.update(<id>, <attribute_name>, <attribute_value>) or
         <class>.update(<id>, <dictionary>)
         Updates an instance based on the class name and id by adding or
-        updating attribute and saves the changes into the JSON file.")
+        updating attribute and saves the changes into the JSON file.''')
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help update"))
             self.assertEqual(h, output.getvalue().strip())
