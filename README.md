@@ -171,23 +171,23 @@ $
 ### Commands:
 
 + Create :
-    - Usage: create &lt class &gt
+    - Usage: create &lt;class&gt;
     - Creates a new instance of BaseModel, saves it to the JSON file and prints the id.
 + Show : 
-    - Usage: show <class> <id> or <class>.show(<id>)
+    - Usage: show &lt;class&gt; &lt;id&gt; or &lt;class&gt;.show(&lt;id&gt;)
     - Prints the string representation of an instance based on the class name and id.
 + Destroy :
-    - Usage: destroy <class> <id> or <class>.destroy(<id>)
+    - Usage: destroy &lt;class&gt; &lt;id&gt; or &lt;class&gt;.destroy(&lt;id&gt;)
     - Deletes an instance based on the class name & id and saves the change into the JSON file.
 + all :
-    - Usage: all or all <class> or <class>.all()
+    - Usage: all or all &lt;class&gt; or &lt;class&gt;.all()
     - Prints all string representation of all instances based or not on the class name.
     - If no class is specified, displays all instantiated objects.
 + count :
-    - Usage: count <class> or <class>.count()
+    - Usage: count &lt;class&gt; or &lt;class&gt;.count()
     - Retrieves the number of instances of a given class.
 + update :
-    - Usage: update <class> <id> <attribute_name> <attribute_value> or
-<class>.update(<id>, <attribute_name>, <attribute_value>) or
-<class>.update(<id>, <dictionary>)
+    - Usage: update &lt;class&gt; &lt;id&gt; &lt;attribute_name&gt; &lt;attribute_value&gt; or
+&lt;class&gt;.update(&lt;id&gt;, &lt;attribute_name&gt;, &lt;attribute_value&gt;) or
+ &lt;class&gt;.update(&lt;id&gt;, &lt;dictionary&gt;)
     - Updates an instance based on the class name and id by adding or updating attribute and saves the changes into the JSON file.
