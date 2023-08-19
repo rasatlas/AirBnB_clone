@@ -26,12 +26,12 @@ class BaseModel:
         if kwargs:
             # Creates BaseModel from dictionary.
             # Converts datetime string values into datetime object values.
-            del kwargs["__class__"]
+            # del kwargs["__class__"]
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
                     datetime_obj = datetime.strptime(value, time_format)
                     setattr(self, key, datetime_obj)
-                else:
+                elif key != "__class__":
                     setattr(self, key, value)
         else:
             # Instantiate id, created_at & update_at to default values
