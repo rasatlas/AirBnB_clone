@@ -171,7 +171,7 @@ $
 ### Commands:
 
 + Create :
-    - Usage: create <class>
+    - Usage: create &lt class &gt
     - Creates a new instance of BaseModel, saves it to the JSON file and prints the id.
 + Show : 
     - Usage: show <class> <id> or <class>.show(<id>)
