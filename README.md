@@ -171,7 +171,7 @@ $
 ### Commands:
 
 + **create** :
-    - Usage: create &lt;class&gt;
+    - Usage: _create &lt;class&gt;_
     - Creates a new instance of BaseModel, saves it to the JSON file and prints the id.
 + **show** : 
     - Usage: show &lt;class&gt; &lt;id&gt; or &lt;class&gt;.show(&lt;id&gt;)
