@@ -183,3 +183,7 @@ class TestState_to_dict(unittest.TestCase):
         st = State()
         with self.assertRaises(TypeError):
             st.to_dict(None)
+
+
+if __name__ == "__main__":
+    unittest.main()

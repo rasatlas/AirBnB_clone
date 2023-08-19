@@ -243,3 +243,7 @@ class TestPlace_to_dict(unittest.TestCase):
         pl = Place()
         with self.assertRaises(TypeError):
             pl.to_dict(None)
+
+
+if __name__ == "__main__":
+    unittest.main()

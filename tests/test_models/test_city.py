@@ -189,3 +189,7 @@ class TestCity_to_dict(unittest.TestCase):
         cy = City()
         with self.assertRaises(TypeError):
             cy.to_dict(None)
+
+
+if __name__ == "__main__":
+    unittest.main()
